@@ -24,11 +24,34 @@
                 <div class="form-group">
                     <input type="password" class="form-control" name="repassword" placeholder="Re-type Password" required="required">
                 </div>
-                <div class="form-group">
-                    <select name="usertype" id="usertype">
-                        <option value="student">Student</option>
-                        <option value="faculty">Faculty</option>
-                    </select>
+                <div style="display: flex; justify-content: space-evenly;">
+                    <div class="form-group">
+                        <select name="usertype" id="usertype">
+                            <option value="student">Student</option>
+                            <option value="faculty">Faculty</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="classification" id="classification">
+                            <option value="" disabled selected>Select Year</option>
+                            <option value="freshman">Freshman</option>
+                            <option value="sophomore">Sophomore</option>
+                            <option value="junior">Junior</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="school" id="school">
+                            <option value="" disabled selected>Select School</option>
+                            <option value="natsci">Natural Sciences</option>
+                            <option value="socsci">Social Sciences</option>
+                            <option value="ed">Education</option>
+                            <option value="christstud">Christian Studies</option>
+                            <option value="human">Humanities</option>
+                            <option value="fina">Fine Arts</option>
+                            <option value="bus">Business</option>
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Register</button>              
             </form>  
@@ -36,22 +59,20 @@
         </div>
  
         <?php
-        //require_once "../config.php";
+        
 
         if(isset($_POST['username'])){
             $uname = $_POST['username'];
             $upass = $_POST['password'];
             $urpass = $_POST['repassword'];
             $usertype = $_POST['usertype'];
+            $classification = $_POST['classification'];
+            $school = $_POST['school'];
             if($urpass==$upass){
                 $pass_hash = password_hash($upass, PASSWORD_DEFAULT);
-                //connect with database
-                $conn = new mysqli('localhost','root','','transerve');
-                if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-                } 
-                $sql = "INSERT INTO accounts (user_email, password, user_type)
-                        VALUES ('$uname', '$pass_hash', '$usertype')";
+                require_once "config.php";
+                $sql = "INSERT INTO accounts (user_email, password, classification, school, user_type)
+                        VALUES ('$uname', '$pass_hash', '$classification', '$school', '$usertype')";
                 if ($conn->query($sql) === TRUE) {
                     echo "Account successfully created.";
                     sleep(3);

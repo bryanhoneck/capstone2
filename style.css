@@ -131,6 +131,7 @@ body.loggedin {
 #logo{
     display: flex;
     justify-content: center;
+    margin-bottom: 5%;
 }
 
 .login-form {
@@ -145,5 +146,15 @@ body.loggedin {
 }
 
 #register-link{
+    text-align: center;
+}
+
+table{
+    border-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+td{
     text-align: center;
 }

@@ -2,7 +2,9 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test";
+$dbname = "transerve";
+
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
