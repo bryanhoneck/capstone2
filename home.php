@@ -81,10 +81,13 @@ require_once "config.php";
 				<?php 
 					$sql2 = "SELECT hours, organization, DATE_FORMAT(date, '%m/%d/%Y') AS date FROM user_hour_form WHERE user_email LIKE '%{$useremail}%'";
 					$result = $conn->query($sql2);
+					$totalHours = 0;
 					if ($result->num_rows > 0) {
 						// output data of each row
+						
 						while($row = $result->fetch_assoc()) {
 						  echo "<tr><td>". $row["hours"]."</td><td>".$row["organization"]."</td><td>".$row["date"]."</td></tr>";
+						  $totalHours += $row["hours"];
 						}
 					  } else {
 						echo "0 results";
@@ -93,6 +96,9 @@ require_once "config.php";
 			</tbody>
 		</table>
 		<br><br>
+		
+		<p style="text-align: center;">Total Hours: <?php echo $totalHours?></p>
+
 	</body>
 </html>
 

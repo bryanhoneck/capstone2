@@ -1,4 +1,10 @@
 <?php
+
+//$database = file("database.txt");
+
+
+//$username = file("database.txt")[0];
+//$password = file("database.txt")[1];
 $servername = "localhost";
 $username = "root";
 $password = "";
